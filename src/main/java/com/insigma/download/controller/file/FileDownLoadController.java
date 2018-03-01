@@ -23,14 +23,8 @@ public class FileDownLoadController extends BaseController{
 	@Autowired
 	private FileLoadService fileLoadService;
 	
-	@RequestMapping
-    @ResponseBody
-    String home() {
-        return "file!";
-    }
-	
 	@RequestMapping("/{type}/{fileName}")
-	public void brower(@PathVariable String type, @PathVariable String fileName, HttpServletResponse response){
+	public void brower(@PathVariable("type") String type, @PathVariable("fileName") String fileName, HttpServletResponse response){
 		System.out.println(type+"   "+fileName);
 		File file = new File("file/"+type+"/"+fileName);
 		responseFile(response, fileName);
@@ -57,6 +51,6 @@ public class FileDownLoadController extends BaseController{
 				}
 			}
 		}
-		
+
 	}
 }

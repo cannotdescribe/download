@@ -1,0 +1,58 @@
+#server:
+#  port: 8081
+
+---
+
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/view/
+      suffix: .jsp
+#  datasource: datasource
+  aop:
+    proxy-target-class: true
+
+---
+
+#mybatis:
+#  type-aliases-package: com.insigma.monitor.mapper
+#  mapperLocations: classpath:mappings/*Mapper.xml
+#  mapper-locations:
+#   - classpath*:mappings/*Mapper.xml
+#   - classpath*:eventMappings/*Mapper.xml
+
+---
+#spring:
+#  profiles:
+#    include: application-user.yml
+
+
+#---
+#
+#defaultTargetDataSource:
+#  driverClassName: com.mysql.jdbc.Driver
+#  username: root
+#  password: insigma123
+#  url: jdbc:mysql://10.10.15.45/jy_ecm2.0?useUnicode=true;characterEncoding=UTF-8;allowMultiQueries=true
+#
+#---
+#
+#myDynamicDataSource:
+#  targetDataSources:
+#    station100000:
+#      datasource:
+#        driverClassName: com.mysql.jdbc.Driver
+#        username: root
+#        password: insigma123
+#        url: jdbc:mysql://10.10.15.45/jy_ecm2.0?useUnicode=true;characterEncoding=UTF-8;allowMultiQueries=true
+#    station100001:
+#      datasource:
+#        driverClassName: com.mysql.jdbc.Driver
+#        username: root
+#        password: insigma123
+#        url: jdbc:mysql://10.10.15.45/jy_ecm2.0_1?useUnicode=true;characterEncoding=UTF-8;allowMultiQueries=true
+
+
+
+
+
