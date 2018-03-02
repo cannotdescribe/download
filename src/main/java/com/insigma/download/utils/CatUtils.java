@@ -412,13 +412,6 @@ public class CatUtils {
         }
 	}
 
-    public static void main(String[] args) {
-        String s = "setFuck";
-        String a = s.substring(3);
-        a = a.substring(0, 1).toLowerCase() + a.substring(1);
-        System.out.println(a);
-    }
-
     public static Date simpleParseDate(String date){
         try {
             return sdf.parse(date);
