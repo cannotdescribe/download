@@ -6,32 +6,35 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.insigma.download.utils.RequestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.insigma.download.controller.BaseController;
 import com.insigma.download.service.FileLoadService;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Controller
 @RequestMapping("/file")
 public class FileDownLoadController extends BaseController{
-	@Autowired
-	private FileLoadService fileLoadService;
-	
+
 	@RequestMapping("/{type}/{fileName}")
-	public void brower(@PathVariable("type") String type, @PathVariable("fileName") String fileName, HttpServletResponse response){
-		System.out.println(type+"   "+fileName);
-		File file = new File("file/"+type+"/"+fileName);
-		responseFile(response, fileName);
-		byte[] buff = new byte[1024];
-		BufferedInputStream bis = null;
-		OutputStream os = null;
+	public void brower(@PathVariable("type") String type, @PathVariable("fileName") String fileName,
+                       HttpServletResponse response, HttpServletRequest request){
+	    String fileNameAndSuffix = fileName + RequestUtils.getSuffix(request);
+        ClassPathResource classPathResource = new ClassPathResource("file/"+type+"/"+fileNameAndSuffix);
+        BufferedInputStream bis = null;
+        OutputStream os = null;
 		try {
+            File file = classPathResource.getFile();
+            responseFile(response, fileNameAndSuffix);
+            byte[] buff = new byte[1024];
 			os = response.getOutputStream();
 			bis = new BufferedInputStream(new FileInputStream(file));
 			int i = bis.read(buff);
@@ -51,6 +54,10 @@ public class FileDownLoadController extends BaseController{
 				}
 			}
 		}
+	}
 
+	@RequestMapping("{type}")
+	public void brower(@PathVariable("type") String type, HttpServletRequest request){
+        System.out.println(type);
 	}
 }
