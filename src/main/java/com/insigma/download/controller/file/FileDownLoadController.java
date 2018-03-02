@@ -27,37 +27,6 @@ import com.insigma.download.controller.BaseController;
 @RequestMapping("/files")
 public class FileDownLoadController extends BaseController{
 
-//	@RequestMapping("/{type}/{fileName}")
-//	public void brower(@PathVariable("type") String type, @PathVariable("fileName") String fileName,
-//                       HttpServletResponse response, HttpServletRequest request){
-//	    String fileNameAndSuffix = fileName + RequestUtils.getSuffix(request);
-//        ClassPathResource classPathResource = new ClassPathResource("files/"+type+"/"+fileNameAndSuffix);
-//        BufferedInputStream bis = null;
-//        OutputStream os = null;
-//		try {
-//            File files = classPathResource.getFile();
-//            responseFile(response, fileNameAndSuffix);
-//            byte[] buff = new byte[1024];
-//			os = response.getOutputStream();
-//			bis = new BufferedInputStream(new FileInputStream(files));
-//			int i = bis.read(buff);
-//			while (i != -1) {
-//				os.write(buff, 0, buff.length);
-//				os.flush();
-//				i = bis.read(buff);
-//			}
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		} finally {
-//			if (bis != null) {
-//				try {
-//					bis.close();
-//				} catch (IOException e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		}
-//	}
     public void sendPath(HttpServletRequest request, HttpServletResponse response, WebResourceFile webResourceFile){
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("nowPath", webResourceFile.getWebRootFilePath());
