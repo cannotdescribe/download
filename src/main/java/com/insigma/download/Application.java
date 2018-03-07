@@ -12,6 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @EnableAutoConfiguration(exclude={
         DataSourceAutoConfiguration.class,
@@ -23,7 +24,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
         "com.insigma.download.controller",
         "com.insigma.download.service"
 })
+@RestController
 public class Application extends SpringBootServletInitializer {
+    @RequestMapping("/helloworld")
+    @ResponseBody
+    public String hello() {
+        System.out.println("helloworld");
+        return "helloworld";
+    }
+
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         return builder.sources(Application.class);

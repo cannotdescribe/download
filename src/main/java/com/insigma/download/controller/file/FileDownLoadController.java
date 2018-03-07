@@ -22,9 +22,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.insigma.download.controller.BaseController;
+import org.springframework.web.bind.annotation.RestController;
 
 @Controller
-@RequestMapping("/files")
+@RequestMapping("list")
 public class FileDownLoadController extends BaseController{
 
     public void sendPath(HttpServletRequest request, HttpServletResponse response, WebResourceFile webResourceFile){
@@ -41,6 +42,7 @@ public class FileDownLoadController extends BaseController{
             }
         }
         result.put("childrenPath", frbs);
+        System.out.println("---result--->" + result);
         HtmlUtil.writerJson(response, result);
     }
 
@@ -84,4 +86,5 @@ public class FileDownLoadController extends BaseController{
             //TODO 路径不存在
         }
 	}
+
 }

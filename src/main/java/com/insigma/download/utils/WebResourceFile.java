@@ -63,7 +63,7 @@ public class WebResourceFile {
     }
 
     public String getWebRootFilePath(){
-        int index = path.indexOf("classes");
+        int index = path.lastIndexOf("classes");
         return path.substring(index + 7, path.length());
     }
 
